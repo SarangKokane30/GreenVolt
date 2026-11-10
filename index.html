@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#174b36">
+  <meta name="description" content="GreenVolt Energy Solutions — LiFePO4 battery packs and energy storage solutions.">
+  <title>GreenVolt Energy Solutions | Powering What's Next</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--green:#174B36;--black:#151A17;--lime:#B5E853;--white:#F8FAF7;--mist:#E6EEE8;--slate:#66736B;--line:#dce5de;--shadow:0 18px 50px rgba(13,39,26,.10)}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--white);color:var(--black);font-family:"DM Sans",sans-serif} h1,h2,h3,h4{font-family:Manrope,sans-serif;letter-spacing:-.04em;margin:0} p{line-height:1.65;color:#536159} a{color:inherit;text-decoration:none} button,input,select,textarea{font:inherit} .container{width:min(1160px,calc(100% - 44px));margin:auto}
+    .topbar{background:#0d241a;color:#dbe9df;font-size:12px;padding:9px 0}.topbar .container{display:flex;justify-content:space-between;gap:16px}.topbar span{opacity:.9}
+    header{position:sticky;top:0;z-index:20;background:rgba(248,250,247,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(23,75,54,.09)}
+    .nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;min-width:205px}.brand img{width:205px;height:62px;object-fit:contain;object-position:left center}.brand-fallback{font:800 25px Manrope;color:var(--green);letter-spacing:-1.5px}.brand-fallback small{display:block;font:600 9px "DM Sans";letter-spacing:3px;color:var(--black)}
+    .links{display:flex;align-items:center;gap:27px;font-size:13px;font-weight:700}.links a{transition:.2s}.links a:hover,.links a.active{color:var(--green)}.nav-actions{display:flex;gap:10px;align-items:center}.btn{border:0;border-radius:10px;padding:13px 19px;font-weight:800;font-size:13px;display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:.2s}.btn:hover{transform:translateY(-2px);filter:brightness(1.02)}.btn-primary{background:var(--lime);color:#102116;box-shadow:0 8px 22px rgba(181,232,83,.23)}.btn-dark{background:var(--green);color:white}.btn-outline{border:1px solid #aab9af;background:transparent;color:var(--black)}.menu{display:none;background:none;border:0;font-size:25px;color:var(--green)}
+    .hero{position:relative;overflow:hidden;background:radial-gradient(circle at 76% 48%,rgba(181,232,83,.18),transparent 27%),linear-gradient(115deg,#f8faf7 0%,#eef5ef 52%,#dcebe2 100%);padding:76px 0 42px}.hero:after{content:"";position:absolute;width:650px;height:650px;border:1px solid rgba(23,75,54,.08);border-radius:50%;right:-110px;top:-260px;box-shadow:0 0 0 55px rgba(23,75,54,.025),0 0 0 110px rgba(23,75,54,.02)}.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:35px}.eyebrow{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--green);text-transform:uppercase;display:flex;align-items:center;gap:10px}.eyebrow:before{content:"";width:26px;height:2px;background:var(--lime)}h1{font-size:clamp(42px,5.2vw,68px);line-height:1.04;margin:19px 0 18px;max-width:650px}.accent{color:var(--green)}.hero-copy{font-size:17px;max-width:550px;margin-bottom:27px}.hero-buttons{display:flex;gap:12px;flex-wrap:wrap}.hero-note{margin-top:34px;display:flex;gap:25px;flex-wrap:wrap}.mini-stat{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:700;color:#31463a}.mini-stat b{display:block;color:var(--green);font-size:18px;font-family:Manrope}.mini-icon{width:34px;height:34px;border:1px solid #c8d8cd;border-radius:10px;display:grid;place-items:center;color:var(--green);font-size:17px}
+    .hero-visual{min-height:390px;position:relative;display:grid;place-items:center}.orb{position:absolute;width:370px;height:370px;border-radius:50%;background:radial-gradient(circle,rgba(181,232,83,.34),rgba(181,232,83,.07) 45%,transparent 70%)}.battery-render{position:relative;width:min(100%,520px);height:300px;filter:drop-shadow(0 32px 25px rgba(14,35,24,.22));transform:perspective(900px) rotateY(-15deg) rotateX(7deg)}.battery-top{position:absolute;left:13%;top:12%;width:76%;height:52%;background:linear-gradient(145deg,#29332d,#070c09);border:2px solid #64766a;border-radius:22px;transform:skewY(-8deg);box-shadow:inset 0 2px 0 rgba(255,255,255,.18)}.battery-top:before{content:"GREENVOLT";position:absolute;left:12%;top:38%;font:800 25px Manrope;letter-spacing:1px;color:#d8f2dc}.battery-top:after{content:"ENERGY SOLUTIONS  •  LiFePO₄";position:absolute;left:13%;top:55%;font-size:8px;letter-spacing:2px;color:#9fb9a7}.battery-side{position:absolute;left:13%;top:58%;width:76%;height:27%;background:linear-gradient(90deg,#0b100d,#26342b);border:2px solid #526358;border-radius:0 0 20px 20px;transform:skewY(-8deg);box-shadow:inset 0 -8px 0 rgba(0,0,0,.25)}.battery-side:after{content:"";position:absolute;left:8%;right:8%;top:38%;height:5px;background:linear-gradient(90deg,var(--lime),#4b9b36,var(--lime));box-shadow:0 0 17px var(--lime)}.battery-foot{position:absolute;left:8%;bottom:6%;width:86%;height:22px;border-radius:50%;background:#263a2c;filter:blur(8px);opacity:.45}.floating-tag{position:absolute;background:white;border:1px solid #e0e9e2;border-radius:13px;padding:12px 15px;box-shadow:var(--shadow);font-size:12px;font-weight:800}.floating-tag span{display:block;color:var(--slate);font-size:10px;font-weight:500;margin-top:3px}.tag-one{right:0;top:55px}.tag-two{left:0;bottom:45px}
+    .trust-strip{background:white;border-top:1px solid #e7eee8;border-bottom:1px solid #e7eee8}.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);padding:20px 0}.trust-item{display:flex;gap:12px;align-items:center;padding:4px 22px;border-right:1px solid var(--line)}.trust-item:first-child{padding-left:0}.trust-item:last-child{border:0}.trust-icon{font-size:22px;color:var(--green)}.trust-item b{font-size:13px;display:block}.trust-item small{font-size:11px;color:var(--slate)}
+    section{scroll-margin-top:90px}.section{padding:82px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:30px}.section-head h2{font-size:clamp(29px,3.5vw,42px);line-height:1.12;margin-top:10px}.section-head p{max-width:430px;margin:0}.text-link{font-size:13px;font-weight:800;color:var(--green);border-bottom:1px solid var(--lime);padding-bottom:5px;white-space:nowrap}
+    .products{background:var(--white)}.product-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:15px}.product-card{background:white;border:1px solid #e3ebe5;border-radius:17px;overflow:hidden;box-shadow:0 8px 25px rgba(22,54,36,.055);transition:.25s}.product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}.product-art{height:155px;background:linear-gradient(145deg,#f1f6f2,#e2ece5);display:grid;place-items:center;position:relative;overflow:hidden}.product-art:before{content:"";position:absolute;width:150px;height:150px;border-radius:50%;background:rgba(181,232,83,.16);filter:blur(20px)}.product-shape{z-index:1;width:68%;height:67px;border-radius:12px;background:linear-gradient(145deg,#35443a,#080d0a);border:2px solid #718176;box-shadow:0 15px 18px rgba(0,0,0,.2);transform:skewY(-8deg);position:relative}.product-shape:after{content:"";position:absolute;left:12%;right:12%;bottom:13px;height:4px;background:var(--lime);box-shadow:0 0 12px var(--lime)}.product-shape.cells{height:54px;width:82%;background:repeating-linear-gradient(90deg,#202c24 0 22px,#46564a 23px 26px)}.product-shape.cyl{width:35px;height:90px;border-radius:12px;background:linear-gradient(90deg,#08723f,#b5e853,#0b4b2e);transform:none;box-shadow:18px 0 0 #178d4a,36px 0 0 #0e6339}.product-shape.ev{width:80%;height:42px;border-radius:8px;transform:skewY(-8deg);background:linear-gradient(90deg,#101713,#6c7a70)}.product-shape.custom{width:60%;height:76px;border-radius:14px}.product-info{padding:17px}.product-info h3{font-size:16px;letter-spacing:-.02em}.product-info p{font-size:12px;line-height:1.5;margin:7px 0 15px}.card-link{font-size:12px;font-weight:800;color:var(--green);display:flex;justify-content:space-between;align-items:center}
+    .technology{background:var(--black);color:white;position:relative;overflow:hidden}.technology:before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;right:-130px;top:-220px;background:rgba(181,232,83,.12);filter:blur(90px)}.tech-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}.technology h2{font-size:clamp(32px,4vw,48px);margin:12px 0 16px}.technology p{color:#c2d0c6}.benefits{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:25px}.benefit{display:flex;gap:10px;align-items:center;font-size:13px;color:#e6eee8}.check{color:var(--lime);font-size:18px}.cell-visual{min-height:300px;display:grid;place-items:center;position:relative}.cell-cluster{display:flex;gap:12px;align-items:end;transform:perspective(600px) rotateX(8deg)}.cell{height:175px;width:58px;border-radius:18px 18px 12px 12px;background:linear-gradient(90deg,#17241b,#718078 28%,#1b2920 55%,#050906);border:2px solid #63756a;box-shadow:0 20px 30px rgba(0,0,0,.45);position:relative}.cell:nth-child(2),.cell:nth-child(4){height:205px}.cell:before{content:"";position:absolute;top:-8px;left:7px;right:7px;height:12px;border-radius:50%;background:linear-gradient(#e5eee7,#5c6c61);border:1px solid #9eafa2}.cell:after{content:"";position:absolute;left:0;right:0;bottom:28px;height:5px;background:var(--lime);box-shadow:0 0 20px 4px rgba(181,232,83,.7)}.tech-callout{position:absolute;bottom:0;right:0;border:1px solid #4b6655;background:rgba(10,20,14,.8);padding:14px 18px;border-radius:12px;font-size:12px;color:#d9e8dd}
+    .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}.about-visual{min-height:330px;border-radius:22px;background:linear-gradient(145deg,rgba(10,40,25,.12),rgba(10,40,25,.68)),url('https://images.unsplash.com/photo-1473341304170-971210b5e517?auto=format&fit=crop&w=1100&q=85') center/cover;position:relative;overflow:hidden}.about-visual:after{content:"ENERGY • ENGINEERING • RELIABILITY";position:absolute;bottom:22px;left:22px;color:white;font-size:11px;letter-spacing:2px;font-weight:800}.about-copy h2{font-size:clamp(30px,3.7vw,44px);margin:12px 0}.about-points{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin:25px 0}.about-point{border-left:3px solid var(--lime);padding-left:12px}.about-point b{display:block;font-size:14px}.about-point small{color:var(--slate);font-size:11px}
+    .capabilities{background:var(--mist)}.cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.cap-card{background:white;border:1px solid #dbe6de;border-radius:16px;padding:25px}.cap-num{font:800 12px Manrope;color:#8ba096;letter-spacing:2px}.cap-card h3{font-size:19px;margin:17px 0 8px}.cap-card p{font-size:13px;margin:0}
+    .applications{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.app-card{padding:20px 12px;text-align:center;border:1px solid var(--line);border-radius:14px;background:white}.app-icon{font-size:25px;color:var(--green);margin-bottom:9px}.app-card b{font-size:12px;display:block}
+    .certifications{background:linear-gradient(110deg,#102c20,#174b36);color:white}.cert-grid{display:grid;grid-template-columns:1.2fr repeat(4,1fr);gap:14px;align-items:center}.cert-intro h2{font-size:32px;margin-top:10px}.cert-intro p{color:#c4d3c9;font-size:13px}.cert-item{border-left:1px solid rgba(255,255,255,.18);padding:18px;text-align:center}.cert-mark{font:800 18px Manrope;color:#eaf4ec;letter-spacing:1px}.cert-item small{display:block;color:#c4d3c9;font-size:10px;margin-top:5px}
+    .inquiry-band{background:linear-gradient(90deg,rgba(9,36,24,.94),rgba(13,61,39,.72)),url('https://images.unsplash.com/photo-1473341304170-971210b5e517?auto=format&fit=crop&w=1800&q=85') center/cover;color:white;padding:60px 0}.inquiry-row{display:flex;align-items:center;justify-content:space-between;gap:25px}.inquiry-row h2{font-size:clamp(30px,4vw,45px)}.inquiry-row p{color:#d5e1d8;margin:9px 0 0}
+    .contact{background:#f1f6f2}.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:45px}.contact h2{font-size:40px;margin:12px 0}.contact-detail{display:flex;gap:13px;margin:22px 0}.contact-detail .ico{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:#dfece3;color:var(--green);font-size:18px;flex-shrink:0}.contact-detail b{display:block;font-size:13px}.contact-detail span,.contact-detail a{font-size:12px;color:var(--slate);line-height:1.6}.socials{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}.socials a{padding:9px 12px;border:1px solid #cbd9cf;border-radius:9px;font-size:11px;font-weight:800;color:var(--green)}.contact-form{background:white;padding:28px;border-radius:18px;border:1px solid #e0e9e2;box-shadow:var(--shadow)}.contact-form h3{font-size:23px;margin-bottom:5px}.contact-form>p{font-size:12px;margin-top:0}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:11px;font-weight:800;color:#35473b}.field input,.field select,.field textarea{border:1px solid #dce6df;border-radius:9px;padding:12px;background:#fbfdfb;outline:none;font-size:12px}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(23,75,54,.08)}.field textarea{min-height:95px;resize:vertical}.form-note{font-size:10px;color:#829087;margin:10px 0 0}.success{display:none;background:#e8f5e8;border:1px solid #b8d8b8;color:#174b36;padding:12px;border-radius:9px;font-size:12px;margin-top:12px}
+    footer{background:#101713;color:white;padding:45px 0 20px}.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:35px}.footer-brand img{width:210px;height:70px;object-fit:contain;object-position:left;background:white;border-radius:8px;padding:4px}.footer-brand p{color:#b9c7be;font-size:12px;max-width:270px}.footer-col h4{font-size:13px;margin-bottom:16px;color:#f5faf6;letter-spacing:0}.footer-col a,.footer-col span{display:block;color:#b9c7be;font-size:12px;margin:11px 0}.footer-col a:hover{color:var(--lime)}.footer-bottom{border-top:1px solid #2c3a31;margin-top:35px;padding-top:18px;display:flex;justify-content:space-between;color:#89988e;font-size:10px;gap:15px}
+    .modal{display:none;position:fixed;inset:0;z-index:50;background:rgba(4,13,8,.72);backdrop-filter:blur(5px);padding:20px;align-items:center;justify-content:center}.modal.open{display:flex}.modal-box{width:min(620px,100%);max-height:90vh;overflow:auto;background:var(--white);border-radius:18px;padding:28px;position:relative}.close{position:absolute;right:18px;top:15px;border:0;background:#e7eee8;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:20px}.modal-box h2{font-size:29px;margin-bottom:7px}.modal-box>p{font-size:12px;margin-top:0}
+    @media(max-width:980px){.links{gap:15px}.product-grid{grid-template-columns:repeat(3,1fr)}.applications{grid-template-columns:repeat(3,1fr)}.cert-grid{grid-template-columns:repeat(4,1fr)}.cert-intro{grid-column:1/-1}.cert-item:nth-child(2){border:0}.hero-grid{gap:10px}.hero-visual{min-height:330px}}
+    @media(max-width:760px){.container{width:min(100% - 30px,560px)}.topbar .container{justify-content:center}.topbar span:last-child{display:none}.nav{height:68px}.brand{min-width:0}.brand img{width:165px;height:55px}.menu{display:block}.links{display:none;position:absolute;top:68px;left:0;right:0;background:var(--white);padding:18px 24px 24px;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:19px}.links.show{display:flex}.nav-actions .btn{display:none}.hero{padding:48px 0 25px}.hero-grid{grid-template-columns:1fr}.hero-visual{min-height:280px;order:2}.hero-copy{font-size:15px}.hero-note{gap:15px}.mini-stat{font-size:10px}.mini-stat b{font-size:15px}.battery-render{transform:scale(.85) perspective(900px) rotateY(-15deg) rotateX(7deg)}.tag-one{right:0;top:15px}.tag-two{left:0;bottom:18px}.trust-grid{grid-template-columns:1fr 1fr;gap:13px;padding:17px 0}.trust-item{padding:5px 8px;border:0}.trust-item:first-child{padding-left:8px}.section{padding:58px 0}.section-head{display:block}.section-head p{margin-top:12px}.product-grid{grid-template-columns:1fr 1fr;gap:10px}.product-art{height:125px}.product-info{padding:13px}.product-info h3{font-size:14px}.product-info p{font-size:11px}.tech-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:28px}.technology h2{font-size:34px}.cell-visual{min-height:250px}.about-visual{min-height:250px;order:2}.cap-grid{grid-template-columns:1fr}.applications{grid-template-columns:repeat(3,1fr)}.cert-grid{grid-template-columns:1fr 1fr}.cert-intro{grid-column:1/-1}.cert-item{border:0;padding:12px 5px}.inquiry-row{display:block}.inquiry-row .btn{margin-top:20px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.contact h2{font-size:34px}.contact-form{padding:20px}.footer-grid{grid-template-columns:1fr 1fr;gap:25px}.footer-brand{grid-column:1/-1}.footer-bottom{display:block;line-height:2}.footer-bottom span{display:block}}
+    @media(max-width:390px){.product-grid{grid-template-columns:1fr}.applications{grid-template-columns:1fr 1fr}.hero-buttons .btn{width:100%}}
+
+    /* Refinements: calmer first impression, more whitespace, original brand mark */
+    .nav{height:94px}
+    .brand{min-width:132px}
+    .brand img{width:128px;height:88px;object-fit:contain;object-position:left center}
+    .hero{padding:66px 0 58px}
+    .hero-grid{gap:54px}
+    .hero-visual{min-height:360px}
+    .hero:after{opacity:.55}
+    .product-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+    .product-art{height:175px}
+    .product-info{padding:20px}
+    .section{padding:88px 0}
+    .section-head{margin-bottom:38px}
+    .product-card{box-shadow:0 5px 18px rgba(22,54,36,.045)}
+    .product-card:hover{transform:translateY(-3px)}
+    .certifications{margin-top:8px}
+    .inquiry-band{padding:34px 0}
+    footer{padding-top:56px}
+    @media(max-width:980px){.brand img{width:116px;height:84px}.nav{height:88px}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:760px){.nav{height:76px}.brand img{width:108px;height:72px}.hero{padding:44px 0 30px}.hero-grid{gap:12px}.hero-visual{min-height:260px}.product-grid{grid-template-columns:1fr 1fr;gap:12px}.product-art{height:130px}.section{padding:60px 0}.section-head{margin-bottom:25px}}
+    @media(max-width:390px){.product-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="GreenVolt home"><img src="assets/greenvolt-logo.png" alt="GreenVolt Energy Solutions logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="brand-fallback" style="display:none">GreenVolt<small>ENERGY SOLUTIONS</small></span></a>
+      <button class="menu" id="menuBtn" aria-label="Open menu">☰</button>
+      <nav class="links" id="navLinks">
+        <a class="active" href="#home">Home</a><a href="#about">About Us</a><a href="#products">Products</a><a href="#solutions">Solutions</a><a href="#technology">Technology</a><a href="#certifications">Certifications</a><a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions"><button class="btn btn-primary" data-inquiry>Inquiry Now ↗</button></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Lithium energy solutions</div>
+          <h1>Powering <span class="accent">sustainable</span> mobility and energy storage.</h1>
+          <p class="hero-copy">Thoughtfully engineered LiFePO₄ battery solutions for electric mobility, energy storage and industrial applications.</p>
+          <div class="hero-buttons"><a class="btn btn-primary" href="#products">Explore Products ↗</a><a class="btn btn-outline" href="#technology">Our Technology</a></div>
+
+        </div>
+        <div class="hero-visual"><div class="orb"></div><div class="battery-render"><div class="battery-top"></div><div class="battery-side"></div><div class="battery-foot"></div></div></div>
+      </div>
+    </section>
+
+    <div class="trust-strip"><div class="container trust-grid">
+      <div class="trust-item"><span class="trust-icon">⚙</span><span><b>Application-led design</b><small>Solutions shaped around requirements</small></span></div>
+      <div class="trust-item"><span class="trust-icon">⬡</span><span><b>Battery expertise</b><small>LiFePO₄ focused solutions</small></span></div>
+      <div class="trust-item"><span class="trust-icon">✓</span><span><b>Quality-minded process</b><small>Testing and documentation focus</small></span></div>
+      <div class="trust-item"><span class="trust-icon">▦</span><span><b>Flexible enquiries</b><small>For businesses and individuals</small></span></div>
+    </div></div>
+
+    <section class="section products" id="products"><div class="container">
+      <div class="section-head"><div><div class="eyebrow">Our products</div><h2>Battery solutions for<br>what comes next.</h2></div><p>Explore our solution categories. Share your voltage, capacity and application requirements to discuss the right configuration.</p></div>
+      <div class="product-grid">
+        <article class="product-card"><div class="product-art"><div class="product-shape"></div></div><div class="product-info"><h3>Battery Packs</h3><p>Application-specific LiFePO₄ battery pack enquiries.</p><a class="card-link" href="#contact" data-product="Battery Packs">Discuss this product <span>↗</span></a></div></article>
+        <article class="product-card"><div class="product-art"><div class="product-shape ev"></div></div><div class="product-info"><h3>EV Batteries</h3><p>Battery solutions for electric mobility applications.</p><a class="card-link" href="#contact" data-product="EV Batteries">Discuss this product <span>↗</span></a></div></article>
+        <article class="product-card"><div class="product-art"><div class="product-shape cells"></div></div><div class="product-info"><h3>Battery Modules</h3><p>Modular battery configurations for energy systems.</p><a class="card-link" href="#contact" data-product="Battery Modules">Discuss this product <span>↗</span></a></div></article>
+        <article class="product-card"><div class="product-art"><div class="product-shape cyl"></div></div><div class="product-info"><h3>Battery Cells</h3><p>Cell-related enquiries and sourcing requirements.</p><a class="card-link" href="#contact" data-product="Battery Cells">Discuss this product <span>↗</span></a></div></article>
+        <article class="product-card"><div class="product-art"><div class="product-shape custom"></div></div><div class="product-info"><h3>Custom Solutions</h3><p>Discuss a battery system tailored to your needs.</p><a class="card-link" href="#contact" data-product="Custom Solutions">Start a discussion <span>↗</span></a></div></article>
+      </div>
+    </div></section>
+
+    <section class="section technology" id="technology"><div class="container tech-grid">
+      <div><div class="eyebrow" style="color:var(--lime)">Our technology</div><h2>Why LiFePO₄<br>chemistry?</h2><p>Lithium Iron Phosphate is valued for its thermal stability, long service potential and suitability for demanding energy applications. Final performance depends on cell selection, pack design, BMS and operating conditions.</p>
+        <div class="benefits"><div class="benefit"><span class="check">✓</span>Thermal stability characteristics</div><div class="benefit"><span class="check">✓</span>Long-cycle-life potential</div><div class="benefit"><span class="check">✓</span>Consistent power delivery</div><div class="benefit"><span class="check">✓</span>Battery management integration</div></div>
+        <div style="margin-top:28px"><a class="btn btn-primary" href="#contact">Talk to our team ↗</a></div>
+      </div>
+      <div class="cell-visual"><div class="cell-cluster"><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div></div><div class="tech-callout">LiFePO₄ · Battery systems<br><span style="color:var(--lime)">Engineered around your use case</span></div></div>
+    </div></section>
+
+    <section class="section" id="about"><div class="container about-grid">
+      <div class="about-visual"></div>
+      <div class="about-copy"><div class="eyebrow">About GreenVolt</div><h2>Energy solutions with a focus on reliability.</h2><p>GreenVolt Energy Solutions is focused on lithium battery solutions built around practical application needs. We aim to make battery technology more accessible through clear technical conversations, considered configurations and responsive customer support.</p><p>Whether you are evaluating a battery for mobility, backup or energy storage, our team can help understand your requirements and identify a suitable next step.</p>
+        <div class="about-points"><div class="about-point"><b>Application first</b><small>Understand the use case before proposing a configuration.</small></div><div class="about-point"><b>Technical clarity</b><small>Discuss specifications and operating conditions clearly.</small></div><div class="about-point"><b>Customer focused</b><small>Support for business and individual enquiries.</small></div><div class="about-point"><b>Quality awareness</b><small>Documentation and compliance details shared where applicable.</small></div></div>
+        <a class="btn btn-dark" href="#contact">Know more about us ↗</a>
+      </div>
+    </div></section>
+
+    <section class="section capabilities" id="solutions"><div class="container">
+      <div class="section-head"><div><div class="eyebrow">Solutions & capabilities</div><h2>From requirements<br>to battery solutions.</h2></div><p>Tell us what you are building. We can discuss the technical and commercial requirements for your application.</p></div>
+      <div class="cap-grid">
+        <article class="cap-card"><div class="cap-num">01 / APPLICATION</div><h3>Electric Mobility</h3><p>Explore battery requirements for EV and light electric mobility applications.</p></article>
+        <article class="cap-card"><div class="cap-num">02 / STORAGE</div><h3>Energy Storage</h3><p>Discuss battery configurations for solar, storage and backup power use cases.</p></article>
+        <article class="cap-card"><div class="cap-num">03 / INDUSTRY</div><h3>Industrial Systems</h3><p>Battery requirements for equipment, material handling and specialised systems.</p></article>
+      </div>
+    </div></section>
+
+    <section class="section" style="padding-top:65px;padding-bottom:65px"><div class="container">
+      <div class="section-head"><div><div class="eyebrow">Applications</div><h2>One chemistry. Many possibilities.</h2></div><p>Potential application areas to explore with GreenVolt.</p></div>
+      <div class="applications">
+        <div class="app-card"><div class="app-icon">⌁</div><b>Electric Mobility</b></div><div class="app-card"><div class="app-icon">☼</div><b>Solar & Storage</b></div><div class="app-card"><div class="app-icon">⚙</div><b>Industrial Equipment</b></div><div class="app-card"><div class="app-icon">⌂</div><b>Backup Power</b></div><div class="app-card"><div class="app-icon">◈</div><b>Robotics</b></div><div class="app-card"><div class="app-icon">▦</div><b>Custom Applications</b></div>
+      </div>
+    </div></section>
+
+    <section class="section certifications" id="certifications"><div class="container cert-grid">
+      <div class="cert-intro"><div class="eyebrow" style="color:var(--lime)">Trust & compliance</div><h2>Quality you can<br>ask us about.</h2><p>Relevant test reports and certifications can be shared for applicable products when available.</p></div>
+      <div class="cert-item"><div class="cert-mark">ISO</div><small>Management system certificates<br><em>if held and applicable</em></small></div>
+      <div class="cert-item"><div class="cert-mark">UN 38.3</div><small>Transport test summary<br><em>where applicable</em></small></div>
+      <div class="cert-item"><div class="cert-mark">IEC</div><small>Relevant product standards<br><em>as applicable</em></small></div>
+      <div class="cert-item"><div class="cert-mark">RoHS / CE</div><small>Product compliance<br><em>where applicable</em></small></div>
+    </div></section>
+
+    <section class="inquiry-band"><div class="container inquiry-row"><div><h2>Have a battery requirement?</h2><p>Share your application and specifications. Let's start a technical conversation.</p></div><button class="btn btn-primary" data-inquiry>Submit an Inquiry ↗</button></div></section>
+
+    <section class="section contact" id="contact"><div class="container contact-grid">
+      <div><div class="eyebrow">Get in touch</div><h2>Let's power your next project.</h2><p>Reach out for product information, technical discussions, partnerships or a custom battery requirement.</p>
+        <div class="contact-detail"><div class="ico">⌖</div><div><b>Office / Registered Address</b><span>[Add GreenVolt's verified full address]<br>[City, State, PIN, India]</span></div></div>
+        <div class="contact-detail"><div class="ico">✉</div><div><b>Email</b><a href="mailto:[add-email]">[Add official business email]</a></div></div>
+        <div class="contact-detail"><div class="ico">☎</div><div><b>Phone</b><a href="tel:[add-phone]">[Add official contact number]</a></div></div>
+        <div class="contact-detail"><div class="ico">◷</div><div><b>Business hours</b><span>[Add working days and hours]</span></div></div>
+        <h3 style="font:800 13px Manrope;margin-top:27px">Connect with GreenVolt</h3>
+        <div class="socials"><a href="#" data-placeholder-social>LinkedIn ↗</a><a href="#" data-placeholder-social>Instagram ↗</a><a href="#" data-placeholder-social>Facebook ↗</a><a href="#" data-placeholder-social>YouTube ↗</a></div>
+        <p style="font-size:10px;margin-top:10px">Social links are placeholders. Add the official GreenVolt profile URLs before publishing.</p>
+      </div>
+      <form class="contact-form" id="contactForm"><h3>Send an enquiry</h3><p>Tell us a little about your requirement and our team can follow up.</p>
+        <div class="form-grid">
+          <div class="field"><label for="name">Full name *</label><input id="name" name="name" required placeholder="Your name"></div>
+          <div class="field"><label for="company">Company</label><input id="company" name="company" placeholder="Company name (optional)"></div>
+          <div class="field"><label for="email">Email *</label><input id="email" name="email" type="email" required placeholder="you@example.com"></div>
+          <div class="field"><label for="phone">Phone *</label><input id="phone" name="phone" required placeholder="+91"></div>
+          <div class="field"><label for="type">Enquiry type *</label><select id="type" name="type" required><option value="">Select type</option><option>Product enquiry</option><option>Custom battery solution</option><option>Partnership / B2B</option><option>Technical support</option><option>General enquiry</option></select></div>
+          <div class="field"><label for="product">Product / category</label><select id="product" name="product"><option value="">Select product</option><option>Battery Packs</option><option>EV Batteries</option><option>Battery Modules</option><option>Battery Cells</option><option>Custom Solutions</option></select></div>
+          <div class="field"><label for="voltage">Voltage requirement</label><input id="voltage" name="voltage" placeholder="e.g. 48V"></div>
+          <div class="field"><label for="capacity">Capacity requirement</label><input id="capacity" name="capacity" placeholder="e.g. 100Ah"></div>
+          <div class="field full"><label for="application">Application</label><input id="application" name="application" placeholder="EV, solar storage, industrial equipment..."></div>
+          <div class="field full"><label for="message">Message *</label><textarea id="message" name="message" required placeholder="Describe your requirement, quantity and any relevant details..."></textarea></div>
+          <div class="field full"><button class="btn btn-primary" type="submit">Send enquiry ↗</button><div class="form-note">Prototype only: this form currently validates in your browser and does not send or store submissions. Connect it to a secure backend/email service before launch.</div><div class="success" id="formSuccess">Thanks! Your enquiry details passed the demo form validation. Connect a backend to receive submissions.</div></div>
+        </div>
+      </form>
+    </div></section>
+  </main>
+
+  <footer><div class="container"><div class="footer-grid">
+    <div class="footer-brand"><img src="assets/greenvolt-logo.png" alt="GreenVolt Energy Solutions"><p>LiFePO₄ battery solutions for electric mobility, energy storage and industrial applications.</p></div>
+    <div class="footer-col"><h4>Explore</h4><a href="#about">About Us</a><a href="#products">Products</a><a href="#solutions">Solutions</a><a href="#technology">Technology</a></div>
+    <div class="footer-col"><h4>Information</h4><a href="#certifications">Certifications</a><a href="#contact">Contact</a><a href="#contact" data-inquiry>Request an Inquiry</a></div>
+    <div class="footer-col"><h4>Contact</h4><span>[Official business address]</span><a href="mailto:[add-email]">[Official email]</a><a href="tel:[add-phone]">[Official phone]</a></div>
+  </div><div class="footer-bottom"><span>© <span id="year"></span> GreenVolt Energy Solutions. All rights reserved.</span><span>Designed for clarity. Built around energy.</span></div></div></footer>
+
+  <div class="modal" id="inquiryModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-box"><button class="close" id="closeModal" aria-label="Close">×</button><div class="eyebrow">Start a conversation</div><h2 id="modalTitle">Make an inquiry.</h2><p>Choose the enquiry type and continue to the contact form. We'll need your verified business contact details before launch.</p><div class="field"><label for="modalType">What can we help with?</label><select id="modalType"><option>Product enquiry</option><option>Custom battery solution</option><option>Bulk / B2B requirement</option><option>Technical consultation</option><option>General enquiry</option></select></div><div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap"><button class="btn btn-primary" id="continueInquiry">Continue to form ↗</button><button class="btn btn-outline" id="cancelInquiry">Cancel</button></div></div></div>
+
+  <script>
+    const menuBtn=document.getElementById('menuBtn'), navLinks=document.getElementById('navLinks');
+    menuBtn.addEventListener('click',()=>navLinks.classList.toggle('show'));
+    navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('show')));
+    document.getElementById('year').textContent=new Date().getFullYear();
+    const modal=document.getElementById('inquiryModal');
+    document.querySelectorAll('[data-inquiry]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();modal.classList.add('open')}));
+    document.getElementById('closeModal').onclick=()=>modal.classList.remove('open');
+    document.getElementById('cancelInquiry').onclick=()=>modal.classList.remove('open');
+    document.getElementById('continueInquiry').onclick=()=>{const t=document.getElementById('modalType').value;document.getElementById('type').value=t;modal.classList.remove('open');document.getElementById('contact').scrollIntoView({behavior:'smooth'});setTimeout(()=>document.getElementById('name').focus(),500)};
+    modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open')});
+    document.querySelectorAll('[data-product]').forEach(a=>a.addEventListener('click',()=>{document.getElementById('product').value=a.dataset.product}));
+    document.querySelectorAll('[data-placeholder-social]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();alert('Replace this placeholder with GreenVolt’s official social profile URL before publishing.')}));
+    document.getElementById('contactForm').addEventListener('submit',e=>{e.preventDefault();if(!e.target.reportValidity())return;document.getElementById('formSuccess').style.display='block';e.target.reset()});
+  </script>
+</body>
+</html>
