@@ -20,4 +20,25 @@ describe('inquirySchema', () => {
   it('rejects unknown inquiry types', () => {
     expect(inquirySchema.safeParse({ ...valid, type: 'sales' }).success).toBe(false)
   })
+
+  it('accepts the custom battery requirements captured by the enquiry form', () => {
+    const result = inquirySchema.parse({
+      ...valid,
+      customerType: 'oem',
+      application: 'Electric three-wheeler',
+      vehicleOrEquipment: 'Delivery vehicle',
+      voltage: '48 V',
+      capacity: '60 Ah',
+      dimensions: 'Available tray space 400 x 250 mm',
+      quantity: '12',
+    })
+    expect(result.customerType).toBe('oem')
+    expect(result.quantity).toBe(12)
+    expect(result.vehicleOrEquipment).toBe('Delivery vehicle')
+  })
+
+  it('rejects invalid customer types and quantities', () => {
+    expect(inquirySchema.safeParse({ ...valid, customerType: 'unverified' }).success).toBe(false)
+    expect(inquirySchema.safeParse({ ...valid, quantity: '0' }).success).toBe(false)
+  })
 })
