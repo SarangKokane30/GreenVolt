@@ -7,8 +7,11 @@ const windowMs = 10 * 60 * 1000
 const attempts = new Map<string, { count: number; start: number }>()
 
 export async function POST(request: Request) {
-  const forwarded = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
+  const forwarded = request.headers.get('x-real-ip') || request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
   const now = Date.now()
+  if (attempts.size > 5000) {
+    for (const [ip, attempt] of attempts) if (now - attempt.start >= windowMs) attempts.delete(ip)
+  }
   const current = attempts.get(forwarded)
   if (current && now - current.start < windowMs && current.count >= 5) return NextResponse.json({ error: 'Too many submissions. Please try again later.' }, { status: 429 })
   if (!current || now - current.start >= windowMs) attempts.set(forwarded, { count: 1, start: now })
@@ -33,9 +36,9 @@ export async function POST(request: Request) {
     if (process.env.RESEND_API_KEY && process.env.INQUIRY_TO_EMAIL && process.env.EMAIL_FROM) {
       const { Resend } = await import('resend')
       const resend = new Resend(process.env.RESEND_API_KEY)
-      const delivered = await resend.emails.send({ from: process.env.EMAIL_FROM, to: process.env.INQUIRY_TO_EMAIL, subject: `New GreenVolt inquiry: ${inquiry.type}`, text: `Name: ${inquiry.name}\nEmail: ${inquiry.email}\nPhone: ${inquiry.phone}\nCompany: ${inquiry.company}\nCategory: ${inquiry.category}\nApplication: ${inquiry.application}\n\n${inquiry.message}` })
+      const delivered = await resend.emails.send({ from: process.env.EMAIL_FROM, to: process.env.INQUIRY_TO_EMAIL, subject: `New Green Volt enquiry: ${inquiry.type}`, text: `Customer type: ${inquiry.customerType}\nName: ${inquiry.name}\nEmail: ${inquiry.email}\nPhone: ${inquiry.phone}\nCompany: ${inquiry.company}\nApplication: ${inquiry.application}\nVehicle or equipment: ${inquiry.vehicleOrEquipment}\nVoltage: ${inquiry.voltage}\nCapacity: ${inquiry.capacity}\nDimensions: ${inquiry.dimensions}\nQuantity: ${inquiry.quantity ?? ''}\n\n${inquiry.message}\n\nOther requirements: ${inquiry.additionalRequirements}` })
       if (delivered.error) return NextResponse.json({ error: 'Your inquiry was saved, but notification email failed. Please contact the company directly.' }, { status: 502 })
-      await resend.emails.send({ from: process.env.EMAIL_FROM, to: inquiry.email, subject: 'We received your GreenVolt inquiry', text: `Hello ${inquiry.name},\n\nWe received your inquiry and will follow up using the contact details you provided.\n\nGreenVolt Energy Solutions` })
+      await resend.emails.send({ from: process.env.EMAIL_FROM, to: inquiry.email, subject: 'We received your Green Volt enquiry', text: `Hello ${inquiry.name},\n\nWe received your enquiry and will follow up using the contact details you provided.\n\nGreen Volt Energy Solution` })
     } else if (process.env.NODE_ENV === 'production') {
       return NextResponse.json({ error: 'Inquiry email service is not configured yet.' }, { status: 503 })
     }

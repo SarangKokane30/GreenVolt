@@ -2,8 +2,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getCMS } from '@/lib/cms'
+import { canonicalFor } from '@/lib/metadata'
 
-type ProjectRecord = { title: string; slug: string; summary?: string; application?: string; image?: { url?: string; alt?: string } | number | string }
+type ProjectRecord = { title: string; slug: string; summary?: string; application?: string; image?: { url?: string; alt?: string } | number | string; seo?: { title?: string; description?: string } }
 
 async function findProject(slug: string): Promise<ProjectRecord | null> {
   const cms = await getCMS()
@@ -14,7 +15,8 @@ async function findProject(slug: string): Promise<ProjectRecord | null> {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const project = await findProject(slug)
-  return { title: project ? `${project.title} | GreenVolt project story` : 'Project story | GreenVolt', description: project?.summary || 'GreenVolt battery application project information.' }
+  const canonical = canonicalFor(`/projects/${encodeURIComponent(slug)}`)
+  return { title: project?.seo?.title || (project ? `${project.title} | Green Volt project story` : 'Project story'), description: project?.seo?.description || project?.summary || 'Published Green Volt Energy Solution project information.', ...(canonical ? { alternates: { canonical } } : {}) }
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {

@@ -78,6 +78,7 @@ export interface Config {
     capabilities: Capability;
     testimonials: Testimonial;
     projects: Project;
+    'inquiry-attachments': InquiryAttachment;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -96,6 +97,7 @@ export interface Config {
     capabilities: CapabilitiesSelect<false> | CapabilitiesSelect<true>;
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    'inquiry-attachments': InquiryAttachmentsSelect<false> | InquiryAttachmentsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -178,12 +180,26 @@ export interface User {
  */
 export interface Product {
   id: number;
+  productType?: ('standard' | 'custom') | null;
   name: string;
   slug: string;
   code?: string | null;
   category: number | ProductCategory;
   description?: string | null;
+  application?: string | null;
   chemistry?: string | null;
+  cellFormat?: ('cylindrical' | 'prismatic') | null;
+  nominalVoltage?: string | null;
+  capacityAh?: string | null;
+  energyWh?: string | null;
+  dimensions?: string | null;
+  weight?: string | null;
+  bmsDetails?: string | null;
+  connectors?: string | null;
+  chargingDetails?: string | null;
+  operatingTemperature?: string | null;
+  warrantyTerms?: string | null;
+  availability?: ('enquire' | 'available' | 'unavailable') | null;
   images?:
     | {
         image?: (number | null) | Media;
@@ -208,6 +224,10 @@ export interface Product {
   certifications?: (number | Certification)[] | null;
   datasheet?: (number | null) | Media;
   featured?: boolean | null;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+  };
   status?: ('draft' | 'published') | null;
   updatedAt: string;
   createdAt: string;
@@ -222,7 +242,13 @@ export interface ProductCategory {
   name: string;
   slug: string;
   description?: string | null;
+  image?: (number | null) | Media;
   order?: number | null;
+  active?: boolean | null;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -233,6 +259,10 @@ export interface ProductCategory {
 export interface Media {
   id: number;
   alt?: string | null;
+  /**
+   * Record source or usage rights before publishing this media.
+   */
+  sourceRights: string;
   visibility?: ('public' | 'private') | null;
   updatedAt: string;
   createdAt: string;
@@ -255,6 +285,14 @@ export interface Application {
   name: string;
   slug: string;
   description?: string | null;
+  image?: (number | null) | Media;
+  relatedCategories?: (number | ProductCategory)[] | null;
+  relatedProducts?: (number | Product)[] | null;
+  order?: number | null;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+  };
   status?: ('draft' | 'published') | null;
   updatedAt: string;
   createdAt: string;
@@ -269,10 +307,16 @@ export interface Certification {
   type: 'company' | 'product';
   authority?: string | null;
   number?: string | null;
+  scope?: string | null;
   issueDate?: string | null;
   expiryDate?: string | null;
   document?: (number | null) | Media;
   products?: (number | Product)[] | null;
+  /**
+   * Enable only after the certificate, scope, issuer and current validity have been checked.
+   */
+  verifiedForPublic?: boolean | null;
+  publicVisibility?: boolean | null;
   status?: ('draft' | 'published') | null;
   updatedAt: string;
   createdAt: string;
@@ -288,6 +332,10 @@ export interface Service {
   description?: string | null;
   image?: (number | null) | Media;
   relatedProducts?: (number | Product)[] | null;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+  };
   status?: ('draft' | 'published') | null;
   updatedAt: string;
   createdAt: string;
@@ -298,7 +346,7 @@ export interface Service {
  */
 export interface Inquiry {
   id: number;
-  customerType?: ('individual' | 'business') | null;
+  customerType?: ('individual' | 'business' | 'oem' | 'dealer-distributor') | null;
   name: string;
   email: string;
   phone: string;
@@ -309,17 +357,48 @@ export interface Inquiry {
   category?: string | null;
   product?: (number | null) | Product;
   application?: string | null;
+  vehicleOrEquipment?: string | null;
   voltage?: string | null;
   capacity?: string | null;
+  dimensions?: string | null;
   quantity?: number | null;
   additionalRequirements?: string | null;
   message: string;
+  /**
+   * Only attach files approved for public access. Private enquiry attachments are not enabled until private object storage is configured.
+   */
   attachments?: (number | Media)[] | null;
-  status?: ('new' | 'contacted' | 'in-progress' | 'quoted' | 'won' | 'lost') | null;
+  /**
+   * Private files are accessible only to authenticated administrators.
+   */
+  privateAttachments?: (number | InquiryAttachment)[] | null;
+  status?: ('new' | 'contacted' | 'in-progress' | 'quoted' | 'won' | 'lost' | 'closed') | null;
   adminNotes?: string | null;
   followUpDate?: string | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "inquiry-attachments".
+ */
+export interface InquiryAttachment {
+  id: number;
+  /**
+   * Record the source or ownership of the file.
+   */
+  sourceRights?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -330,6 +409,11 @@ export interface Capability {
   name: string;
   description?: string | null;
   evidence?: (number | null) | Media;
+  order?: number | null;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+  };
   status?: ('draft' | 'published') | null;
   updatedAt: string;
   createdAt: string;
@@ -360,6 +444,10 @@ export interface Project {
   summary?: string | null;
   image?: (number | null) | Media;
   relatedProducts?: (number | Product)[] | null;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+  };
   status?: ('draft' | 'published') | null;
   updatedAt: string;
   createdAt: string;
@@ -431,6 +519,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'projects';
         value: number | Project;
+      } | null)
+    | ({
+        relationTo: 'inquiry-attachments';
+        value: number | InquiryAttachment;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -503,12 +595,26 @@ export interface UsersSelect<T extends boolean = true> {
  * via the `definition` "products_select".
  */
 export interface ProductsSelect<T extends boolean = true> {
+  productType?: T;
   name?: T;
   slug?: T;
   code?: T;
   category?: T;
   description?: T;
+  application?: T;
   chemistry?: T;
+  cellFormat?: T;
+  nominalVoltage?: T;
+  capacityAh?: T;
+  energyWh?: T;
+  dimensions?: T;
+  weight?: T;
+  bmsDetails?: T;
+  connectors?: T;
+  chargingDetails?: T;
+  operatingTemperature?: T;
+  warrantyTerms?: T;
+  availability?: T;
   images?:
     | T
     | {
@@ -533,6 +639,12 @@ export interface ProductsSelect<T extends boolean = true> {
   certifications?: T;
   datasheet?: T;
   featured?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
   status?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -546,7 +658,15 @@ export interface ProductCategoriesSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
   description?: T;
+  image?: T;
   order?: T;
+  active?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -560,6 +680,12 @@ export interface ServicesSelect<T extends boolean = true> {
   description?: T;
   image?: T;
   relatedProducts?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
   status?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -572,6 +698,16 @@ export interface ApplicationsSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
   description?: T;
+  image?: T;
+  relatedCategories?: T;
+  relatedProducts?: T;
+  order?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
   status?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -585,10 +721,13 @@ export interface CertificationsSelect<T extends boolean = true> {
   type?: T;
   authority?: T;
   number?: T;
+  scope?: T;
   issueDate?: T;
   expiryDate?: T;
   document?: T;
   products?: T;
+  verifiedForPublic?: T;
+  publicVisibility?: T;
   status?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -609,12 +748,15 @@ export interface InquiriesSelect<T extends boolean = true> {
   category?: T;
   product?: T;
   application?: T;
+  vehicleOrEquipment?: T;
   voltage?: T;
   capacity?: T;
+  dimensions?: T;
   quantity?: T;
   additionalRequirements?: T;
   message?: T;
   attachments?: T;
+  privateAttachments?: T;
   status?: T;
   adminNotes?: T;
   followUpDate?: T;
@@ -627,6 +769,7 @@ export interface InquiriesSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  sourceRights?: T;
   visibility?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -648,6 +791,13 @@ export interface CapabilitiesSelect<T extends boolean = true> {
   name?: T;
   description?: T;
   evidence?: T;
+  order?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
   status?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -676,9 +826,33 @@ export interface ProjectsSelect<T extends boolean = true> {
   summary?: T;
   image?: T;
   relatedProducts?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
   status?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "inquiry-attachments_select".
+ */
+export interface InquiryAttachmentsSelect<T extends boolean = true> {
+  sourceRights?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -726,20 +900,17 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface CompanyProfile {
   id: number;
-  companyName?: string | null;
+  companyName: string;
+  ownerName?: string | null;
   overview?: string | null;
   vision?: string | null;
   mission?: string | null;
   address?: string | null;
-  factoryAddress?: string | null;
   phone?: string | null;
   email?: string | null;
   businessHours?: string | null;
   socialLinks?: {
-    linkedin?: string | null;
     instagram?: string | null;
-    facebook?: string | null;
-    youtube?: string | null;
     whatsapp?: string | null;
   };
   updatedAt?: string | null;
@@ -754,6 +925,8 @@ export interface Homepage {
   heroTitle?: string | null;
   heroText?: string | null;
   aboutIntro?: string | null;
+  applicationsIntro?: string | null;
+  manufacturingIntro?: string | null;
   finalCta?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -794,21 +967,18 @@ export interface Navigation {
  */
 export interface CompanyProfileSelect<T extends boolean = true> {
   companyName?: T;
+  ownerName?: T;
   overview?: T;
   vision?: T;
   mission?: T;
   address?: T;
-  factoryAddress?: T;
   phone?: T;
   email?: T;
   businessHours?: T;
   socialLinks?:
     | T
     | {
-        linkedin?: T;
         instagram?: T;
-        facebook?: T;
-        youtube?: T;
         whatsapp?: T;
       };
   updatedAt?: T;
@@ -823,6 +993,8 @@ export interface HomepageSelect<T extends boolean = true> {
   heroTitle?: T;
   heroText?: T;
   aboutIntro?: T;
+  applicationsIntro?: T;
+  manufacturingIntro?: T;
   finalCta?: T;
   updatedAt?: T;
   createdAt?: T;

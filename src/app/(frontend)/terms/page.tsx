@@ -1,2 +1,10 @@
-export const metadata = { title: 'Terms and Conditions | GreenVolt' }
-export default function TermsPage() { return <main><section className="cms-page-hero"><div className="wrap"><p className="eyebrow">Information</p><h1>Terms and conditions</h1><p className="lead">This page needs GreenVolt’s approved terms before launch.</p></div></section><section className="section"><div className="wrap legal-placeholder"><h2>Terms content pending approval</h2><p>Ask the GreenVolt administrator to publish reviewed terms that apply to the company’s products, quotations and services.</p></div></section></main> }
+import type { Metadata } from 'next'
+export const metadata: Metadata = { title: 'Website Terms', robots: { index: false, follow: false } }
+export default function TermsPage() {
+  return <main className="section"><div className="wrap legal-content">
+    <p className="eyebrow">Website terms</p>
+    <h1>Product information and enquiries</h1>
+    <p>This website provides company information and a way to enquire about battery pack requirements. It does not offer online ordering or payment.</p>
+    <p>Battery configuration, specifications, availability, warranty and commercial terms depend on the product and customer requirements. Confirm those details in writing with Green Volt Energy Solution before placing an order.</p>
+  </div></main>
+}
