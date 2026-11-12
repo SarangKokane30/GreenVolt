@@ -32,7 +32,7 @@ export function MotionEffects() {
     document.documentElement.classList.add('motion-ready')
     const observed = new WeakSet<Element>()
     const reveal = (root: ParentNode) => {
-      root.querySelectorAll('main > section, .cards > *, .chips > *').forEach((element, index) => {
+      root.querySelectorAll('main > section, .application-card, .showcase-card, .service-card, .project-card, .quality-record, .cards > *, .chips > *').forEach((element, index) => {
         if (observed.has(element) || !(element instanceof HTMLElement)) return
         observed.add(element)
         element.setAttribute('data-reveal', '')
